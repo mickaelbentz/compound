@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'Effet Composé</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculateur d'Effet Composé</h1>
+            <p>Calculez la puissance de la croissance exponentielle</p>
+        </header>
+
+        <div class="calculator-modes">
+            <button class="mode-btn active" id="mode-forward" data-mode="forward">
+                Calculer la Valeur Finale
+            </button>
+            <button class="mode-btn" id="mode-reverse" data-mode="reverse">
+                Trouver le Taux Nécessaire
+            </button>
+        </div>
+
+        <div class="calculator-section" id="forward-calculator">
+            <h2>Calculer la Valeur Finale</h2>
+            <p class="subtitle">À partir d'une valeur de départ et d'un taux de croissance</p>
+
+            <div class="form-group">
+                <label for="initial-value">Valeur de départ</label>
+                <input type="number" id="initial-value" placeholder="1000" step="0.01" value="1000">
+            </div>
+
+            <div class="form-group">
+                <label for="growth-rate">Taux de croissance (%)</label>
+                <input type="number" id="growth-rate" placeholder="5" step="0.01" value="5">
+            </div>
+
+            <div class="form-group">
+                <label for="regular-payment">
+                    Versement régulier (optionnel)
+                    <span class="hint">Montant ajouté à chaque période</span>
+                </label>
+                <input type="number" id="regular-payment" placeholder="0" step="0.01" value="0">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="duration">Durée</label>
+                    <input type="number" id="duration" placeholder="12" step="1" value="12">
+                </div>
+
+                <div class="form-group">
+                    <label for="period-forward">Période</label>
+                    <select id="period-forward">
+                        <option value="week">Semaines</option>
+                        <option value="month">Mois</option>
+                        <option value="year" selected>Années</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inflation-rate">
+                    Taux d'inflation annuel (optionnel)
+                    <span class="hint">Pour calculer la valeur réelle</span>
+                </label>
+                <input type="number" id="inflation-rate" placeholder="0" step="0.01" value="0">
+            </div>
+
+            <button class="btn-calculate" id="calculate-forward">Calculer</button>
+        </div>
+
+        <div class="calculator-section hidden" id="reverse-calculator">
+            <h2>Trouver le Taux Nécessaire</h2>
+            <p class="subtitle">À partir d'un objectif final et d'une valeur de départ</p>
+
+            <div class="form-group">
+                <label for="initial-value-reverse">Valeur de départ</label>
+                <input type="number" id="initial-value-reverse" placeholder="1000" step="0.01" value="1000">
+            </div>
+
+            <div class="form-group">
+                <label for="target-value">Valeur cible (objectif)</label>
+                <input type="number" id="target-value" placeholder="2000" step="0.01" value="2000">
+            </div>
+
+            <div class="form-group">
+                <label for="regular-payment-reverse">
+                    Versement régulier (optionnel)
+                    <span class="hint">Montant ajouté à chaque période</span>
+                </label>
+                <input type="number" id="regular-payment-reverse" placeholder="0" step="0.01" value="0">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="duration-reverse">Durée</label>
+                    <input type="number" id="duration-reverse" placeholder="12" step="1" value="12">
+                </div>
+
+                <div class="form-group">
+                    <label for="period-reverse">Période</label>
+                    <select id="period-reverse">
+                        <option value="week">Semaines</option>
+                        <option value="month">Mois</option>
+                        <option value="year" selected>Années</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inflation-rate-reverse">
+                    Taux d'inflation annuel (optionnel)
+                    <span class="hint">Pour calculer le taux réel nécessaire</span>
+                </label>
+                <input type="number" id="inflation-rate-reverse" placeholder="0" step="0.01" value="0">
+            </div>
+
+            <button class="btn-calculate" id="calculate-reverse">Calculer</button>
+        </div>
+
+        <div class="results-section hidden" id="results">
+            <h2>Résultats</h2>
+
+            <div class="result-card">
+                <div class="result-main" id="result-main"></div>
+                <div class="result-details" id="result-details"></div>
+            </div>
+
+            <div class="timeline" id="timeline"></div>
+
+            <div class="export-section">
+                <button class="btn-export" id="export-csv">
+                    📊 Exporter en CSV
+                </button>
+                <button class="btn-export" id="export-json">
+                    📄 Exporter en JSON
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
